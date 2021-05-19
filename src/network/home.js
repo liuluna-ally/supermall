@@ -1,6 +1,6 @@
-import {request} from './request'
+import {request} from './request.js'
 export function getHomeMultidata(){
     return request({
-        url:'/queryRecord'
+        url:'/home/multidata'
     })
 }

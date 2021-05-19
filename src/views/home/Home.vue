@@ -4,7 +4,7 @@
         <div slot="center">购物街</div>
       </nav-bar>
       <home-swiper :cbanners="banners"></home-swiper>
-      <home-recommend :cproducts="products"></home-recommend>
+      <home-recommend :crecommends="recommends"></home-recommend>
       <home-feature-view/>
     </div>
 </template>
@@ -26,14 +26,15 @@
   data(){
     return{
       banners:[],
-      products:[]
+      recommends:[]
     }
   },
   created(){
     // 1.请求多个数据
     getHomeMultidata().then(res=>{
-      this.banners = res.data.banners
-      this.products = res.data.products
+      console.log(res)
+      this.banners = res.data.data.banner.list
+      this.recommends = res.data.data.recommend.list
     })
   },
 }
