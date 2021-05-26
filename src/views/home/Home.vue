@@ -48,7 +48,8 @@
       isShowBackTop:false,
       tabOffsetTop:0,
       isShowTabControl:false,
-      saveY: 0
+      saveY: 0,
+      itemListener:null
     }
   },
   components:{
@@ -80,9 +81,10 @@
   mounted(){
     // 1.监听item中图片加载完成
     const refresh = debounce(this.$refs.scroll.refresh,50)
-    this.$bus.$on('itemLoadImage',()=>{
+    this.itemListener = ()=>{
       refresh()
-    })
+    }
+    this.$bus.$on('itemLoadImage',this.itemListener)
   },
   methods:{
     //-------------------网络请求---------------------------
@@ -165,10 +167,10 @@
   },
 
   deactivated(){
-    // 离开页面时记录页面离开时的滚动位置
+    // 1.离开页面时记录页面离开时的滚动位置
       this.saveY = this.$refs.scroll.getScrollY()
-    // 离开页面时取消全局事件的监听
-   // this.$bus.$off('itemLoadImage',this.itemImgListener)
+    // 2.离开页面时取消全局事件的监听
+      this.$bus.$off('itemLoadImage',this.itemListener)
   }
 }
 </script>

@@ -23,14 +23,14 @@
   <script>
       export default {
           name: "DetailBaseInfo",
-      props: {
-        goods: {
-          type: Object,
-          default() {
-            return {}
+          props: {
+            goods: {
+              type: Object,
+              default() {
+                return {}
+              }
+            }
           }
-        }
-      }
       }
   </script>
   

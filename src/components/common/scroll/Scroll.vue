@@ -40,6 +40,7 @@ export default {
     refresh(){
       this.scroll && this.scroll.refresh
     },
+    //4.获取滚动的高度
     getScrollY(){
       return this.scroll ? this.scroll.y : 0
     }
